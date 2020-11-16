@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.pedintemobile.activity.MainActivity">
+    <item
+        android:id="@+id/action_clientes"
+        android:orderInCategory="100"
+        android:title="@string/action_clientes"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_produtos"
+        android:orderInCategory="100"
+        android:title="@string/action_produtos"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_pedidos"
+        android:orderInCategory="100"
+        android:title="@string/action_pedidos"
+        app:showAsAction="never" />
+</menu>
