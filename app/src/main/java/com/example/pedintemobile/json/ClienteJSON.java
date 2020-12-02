@@ -46,15 +46,6 @@ public class ClienteJSON {
         this.cpf = cpf;
     }
 
-//    public static List<ClienteJSON> map(List<Cliente> clientes) {
-//        System.out.println("Mapeando resposta do CORE: Cliente para JSON.");
-//        List<ClienteJSON> response = new ArrayList<>();
-//        for(Cliente each : clientes) {
-//            response.add(map(each));
-//        }
-//        return response;
-//    }
-
     public static List<Cliente> map(List<ClienteJSON> json) {
         List<Cliente> response = new ArrayList<>();
         for (ClienteJSON each : json) {
@@ -73,7 +64,6 @@ public class ClienteJSON {
         }
         return response;
     }
-
 
     public static Cliente map(ClienteJSON json) {
         Log.i("CLIENTE_JSON", "Mapeamndo ClienteJSON -> Cliente.");

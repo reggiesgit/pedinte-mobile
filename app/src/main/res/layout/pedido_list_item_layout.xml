@@ -9,11 +9,11 @@
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:srcCompat="@drawable/face_black_18dp"
+        app:srcCompat="@drawable/pedal_bike_black_18dp"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
-        android:id="@+id/textViewNome"
+        android:id="@+id/textViewClienteNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -21,27 +21,37 @@
         android:textSize="16dp" />
 
     <TextView
-        android:id="@+id/textViewSobrenome"
+        android:id="@+id/textViewClienteSobrenome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
-        android:layout_toRightOf="@+id/textViewNome"
+        android:layout_toRightOf="@+id/textViewClienteNome"
         android:textSize="16dp" />
 
     <TextView
-        android:id="@+id/textViewCpf"
+        android:id="@+id/quantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:layout_below="@+id/textViewNome"
+        android:text="Itens: "
+        android:layout_below="@+id/textViewClienteNome"
         android:layout_toRightOf="@+id/imageView"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/textViewQuantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/textViewClienteNome"
+        android:layout_toRightOf="@+id/quantidade"
         android:textSize="14dp" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:paddingTop="8dp"
+        android:paddingTop="15dp"
         android:layout_below="@+id/imageView"
         android:background="?android:attr/listDivider" />
 

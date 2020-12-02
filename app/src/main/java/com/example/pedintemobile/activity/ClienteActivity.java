@@ -30,7 +30,6 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
     private RecyclerView recyclerView;
     private List<Cliente> recyclerContent;
     private ClienteAdapter adapter;
-    private ClienteFacade facade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +79,7 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e("CLIENTE_ACTIVITY", "onFailure: ", t);
+                Log.e(TAG, "onFailure: ", t);
             }
         });
         return null;
@@ -88,7 +87,6 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
 
     @Override
     public void onClick(int position) {
-        int id = recyclerContent.get(position).getId();
         Cliente selected = new Cliente();
         selected.setId(recyclerContent.get(position).getId());
         selected.setNome(recyclerContent.get(position).getNome());
