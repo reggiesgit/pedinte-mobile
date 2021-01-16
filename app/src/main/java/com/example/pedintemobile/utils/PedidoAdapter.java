@@ -61,7 +61,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
     public void onBindViewHolder(@NonNull PedidoAdapter.PedidoViewHolder holder, int position) {
         holder.nome.setText(pedidoData.get(position).getCliente().getNome());
         holder.sobrenome.setText(pedidoData.get(position).getCliente().getSobrenome());
-        holder.quantidade.setText(pedidoData.get(position).getItens().size());
+        holder.quantidade.setText(String.valueOf(pedidoData.get(position).getItens().size()));
     }
 
     @Override

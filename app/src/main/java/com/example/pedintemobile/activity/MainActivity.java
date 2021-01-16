@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
 
             @Override
             public List<Pedido> onSuccess(List<PedidoJSON> result) {
-                recyclerView = (RecyclerView) findViewById(R.id.cliente_recycler_view);
+                recyclerView = (RecyclerView) findViewById(R.id.pedido_recycler_view);
 
                 recyclerContent = PedidoJSON.map(result);
                 Log.i(TAG, "setUpRecycler: Recebeu pedidos: " + recyclerContent.get(0).getId());

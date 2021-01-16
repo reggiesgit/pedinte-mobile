@@ -12,7 +12,7 @@ import com.example.pedintemobile.service.ClienteCallback;
 import com.example.pedintemobile.utils.ClienteAdapter;
 import com.example.pedintemobile.utils.ItemClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
