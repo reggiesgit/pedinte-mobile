@@ -116,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
             Log.i("MENU", "onOptionsItemSelected: Invocando ClienteActivity");
             Intent it = new Intent(this, ClienteActivity.class);
             startActivity(it);
+        } else if (id == R.id.action_produtos) {
+            Intent it = new Intent(this, ProdutoActivity.class);
+            startActivity(it);
         }
 
         return super.onOptionsItemSelected(item);
