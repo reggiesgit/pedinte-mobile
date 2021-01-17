@@ -16,18 +16,18 @@ import retrofit2.http.Path;
 public interface PedidoService {
 
 
-    @GET("pedido/")
+    @GET("orders/")
     Call<List<PedidoJSON>> findAll();
 
-    @GET("pedido/{id}")
+    @GET("orders/{id}")
     Call<PedidoJSON> findById();
 
-    @POST("pedido/")
+    @POST("orders/")
     Call<PedidoJSON> salvarPedido(@Body PedidoJSON json);
 
-    @PUT("pedido/")
+    @PUT("orders/")
     Call<PedidoJSON> atualizarPedido(@Body PedidoJSON json);
 
-    @DELETE("pedido/{id}")
+    @DELETE("orders/{id}")
     Call<PedidoJSON> removerPedido(@Path("id") int id);
 }

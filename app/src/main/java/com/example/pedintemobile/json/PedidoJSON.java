@@ -4,15 +4,15 @@ import com.example.pedintemobile.model.Cliente;
 import com.example.pedintemobile.model.ItemDoPedido;
 import com.example.pedintemobile.model.Pedido;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PedidoJSON {
 
     private int id;
     private Date createdAt;
-    private Cliente client;
+    private ClienteJSON client;
     private List<ItemDoPedido> itens;
 
     public int getId() {
@@ -31,11 +31,11 @@ public class PedidoJSON {
         this.createdAt = createdAt;
     }
 
-    public Cliente getClient() {
+    public ClienteJSON getClient() {
         return client;
     }
 
-    public void setClient(Cliente client) {
+    public void setClient(ClienteJSON client) {
         this.client = client;
     }
 
@@ -60,8 +60,8 @@ public class PedidoJSON {
         Cliente c = new Cliente();
 
         c.setId(json.getClient().getId());
-        c.setNome(json.getClient().getNome());
-        c.setSobrenome(json.getClient().getSobrenome());
+        c.setNome(json.getClient().getName());
+        c.setSobrenome(json.getClient().getSurname());
         c.setCpf(json.getClient().getCpf());
 
         response.setId(json.getId());
@@ -74,5 +74,4 @@ public class PedidoJSON {
         response.setCliente(c);
         return response;
     }
-
 }
