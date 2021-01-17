@@ -14,18 +14,18 @@ import retrofit2.http.Path;
 
 public interface ClienteService {
 
-    @GET("cliente/")
+    @GET("clients/")
     Call<List<ClienteJSON>> findAll();
 
-    @GET("cliente/{id}")
+    @GET("clients/{id}")
     Call<ClienteJSON> findById();
 
-    @POST("cliente/")
+    @POST("clients/")
     Call<ClienteJSON> salvarCliente(@Body ClienteJSON json);
 
-    @PUT("cliente/")
+    @PUT("clients/")
     Call<ClienteJSON> atualizarCliente(@Body ClienteJSON json);
 
-    @DELETE("cliente/{id}")
+    @DELETE("clients/{id}")
     Call<ClienteJSON> removerCliente(@Path("id") int id);
 }

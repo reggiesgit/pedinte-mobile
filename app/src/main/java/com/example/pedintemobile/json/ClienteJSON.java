@@ -10,8 +10,8 @@ import java.util.List;
 public class ClienteJSON {
 
     private int id;
-    private String nome;
-    private String sobrenome;
+    private String name;
+    private String surname;
     private String cpf;
 
     public int getId() {
@@ -22,20 +22,20 @@ public class ClienteJSON {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getCpf() {
@@ -58,8 +58,8 @@ public class ClienteJSON {
         ClienteJSON response = new ClienteJSON();
         if (cliente != null) {
             response.setId(cliente.getId());
-            response.setNome(cliente.getNome());
-            response.setSobrenome(cliente.getSobrenome());
+            response.setName(cliente.getNome());
+            response.setSurname(cliente.getSobrenome());
             response.setCpf(cliente.getCpf());
         }
         return response;
@@ -70,8 +70,8 @@ public class ClienteJSON {
         Cliente cliente = new Cliente();
         cliente.setId(json.getId());
         cliente.setCpf(json.getCpf());
-        cliente.setNome(json.getNome());
-        cliente.setSobrenome(json.getSobrenome());
+        cliente.setNome(json.getName());
+        cliente.setSobrenome(json.getSurname());
         return cliente;
     }
 }

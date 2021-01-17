@@ -19,10 +19,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PedidoFacade {
     private static String TAG = "Facade Pedido";
+    private static String BASE_URL = "https://sistemapedidosapi.herokuapp.com/";
 
     public static void findAll(final PedidoCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.10:8080/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         PedidoService service = retrofit.create(PedidoService.class);

@@ -11,8 +11,8 @@ import java.util.List;
 public class PedidoJSON {
 
     private int id;
-    private Date data;
-    private Cliente cliente;
+    private Date createdAt;
+    private Cliente client;
     private List<ItemDoPedido> itens;
 
     public int getId() {
@@ -23,20 +23,20 @@ public class PedidoJSON {
         this.id = id;
     }
 
-    public Date getData() {
-        return data;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getClient() {
+        return client;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClient(Cliente client) {
+        this.client = client;
     }
 
     public List<ItemDoPedido> getItens() {
@@ -59,13 +59,13 @@ public class PedidoJSON {
         Pedido response = new Pedido();
         Cliente c = new Cliente();
 
-        c.setId(json.getCliente().getId());
-        c.setNome(json.getCliente().getNome());
-        c.setSobrenome(json.getCliente().getSobrenome());
-        c.setCpf(json.getCliente().getCpf());
+        c.setId(json.getClient().getId());
+        c.setNome(json.getClient().getNome());
+        c.setSobrenome(json.getClient().getSobrenome());
+        c.setCpf(json.getClient().getCpf());
 
         response.setId(json.getId());
-        response.setData(json.getData());
+        response.setData(json.getCreatedAt());
         if (json.getItens() == null) {
             json.setItens(new ArrayList<ItemDoPedido>());
         }

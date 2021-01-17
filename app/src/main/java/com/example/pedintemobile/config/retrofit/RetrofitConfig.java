@@ -1,5 +1,7 @@
 package com.example.pedintemobile.config.retrofit;
 
+import com.example.pedintemobile.service.ClienteService;
+import com.example.pedintemobile.service.PedidoService;
 import com.example.pedintemobile.service.ProdutoService;
 
 import retrofit2.Retrofit;
@@ -22,6 +24,14 @@ public class RetrofitConfig {
 
     public static ProdutoService getProdutoService() {
         return getRetrofitInstance().create(ProdutoService.class);
+    }
+
+    public static ClienteService getClienteService() {
+        return getRetrofitInstance().create(ClienteService.class);
+    }
+
+    public static PedidoService getPedidoService() {
+        return getRetrofitInstance().create(PedidoService.class);
     }
 
 }

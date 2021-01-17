@@ -14,15 +14,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
 
 public class ClienteFacade implements ClienteService {
 
     private static String TAG = "Facade Cliente";
+    private static String BASE_URL = "https://sistemapedidosapi.herokuapp.com/";
 
     public static void findAll(final ClienteCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.10:8080/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ClienteService service = retrofit.create(ClienteService.class);
@@ -48,7 +48,7 @@ public class ClienteFacade implements ClienteService {
 
     public static void salvarCliente(ClienteJSON json, final ClienteCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.36:8080/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ClienteService service = retrofit.create(ClienteService.class);
@@ -73,7 +73,7 @@ public class ClienteFacade implements ClienteService {
 
     public static void atualizarCliente(ClienteJSON json, final ClienteCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.36:8080/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ClienteService service = retrofit.create(ClienteService.class);
@@ -98,7 +98,7 @@ public class ClienteFacade implements ClienteService {
 
     public static void removerCliente(int toRemove, final ClienteCallback callback) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.36:8080/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ClienteService service = retrofit.create(ClienteService.class);

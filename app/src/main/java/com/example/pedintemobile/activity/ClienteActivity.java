@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
     private RecyclerView recyclerView;
     private List<Cliente> recyclerContent;
     private ClienteAdapter adapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
 
     private List<Cliente> obterClientes() {
         Log.i(TAG, "obterClientes: Iniciando requisição por todos os clientes.");
+        progressBar = findViewById(R.id.progressBar);
 
         ClienteFacade.findAll(new ClienteCallback() {
             @Override
@@ -61,6 +64,9 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
             @Override
             public List<Cliente> onSuccess(List<ClienteJSON> result) {
                 recyclerView = (RecyclerView) findViewById(R.id.cliente_recycler_view);
+
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
 
                 recyclerContent = ClienteJSON.map(result);
                 Log.i(TAG, "setUpRecycler: Recebeu clientes: " + recyclerContent.get(0).getNome());

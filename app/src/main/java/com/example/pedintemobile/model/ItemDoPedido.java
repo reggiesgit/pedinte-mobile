@@ -1,31 +1,30 @@
 package com.example.pedintemobile.model;
 
 public class ItemDoPedido {
-    int quantidade;
-    Produto produto;
+    int quantity;
+    Produto product;
+
+    public ItemDoPedido(int quantity, Produto product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
 
     public ItemDoPedido() {
-
     }
 
-    public ItemDoPedido(int quantidade, Produto produto) {
-        this.quantidade = quantidade;
-        this.produto = produto;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public Produto getProduct() {
+        return product;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProduct(Produto product) {
+        this.product = product;
     }
 }

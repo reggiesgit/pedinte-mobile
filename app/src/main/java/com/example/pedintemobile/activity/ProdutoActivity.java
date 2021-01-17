@@ -77,9 +77,7 @@ public class ProdutoActivity extends AppCompatActivity {
             public void onFailure(Call<List<ProdutoJSON>> call, Throwable t) {
                 Log.e("ERROR", t.getMessage());
             }
-
         });
 
     }
-
 }
