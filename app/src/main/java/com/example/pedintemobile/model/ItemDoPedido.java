@@ -1,6 +1,8 @@
 package com.example.pedintemobile.model;
 
-public class ItemDoPedido {
+import java.io.Serializable;
+
+public class ItemDoPedido implements Serializable {
     int quantity;
     Produto product;
 

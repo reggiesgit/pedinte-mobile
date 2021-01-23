@@ -1,5 +1,7 @@
 package com.example.pedintemobile.json;
 
+import android.util.Log;
+
 import com.example.pedintemobile.model.Cliente;
 import com.example.pedintemobile.model.ItemDoPedido;
 import com.example.pedintemobile.model.Pedido;
@@ -13,7 +15,7 @@ public class PedidoJSON {
     private int id;
     private Date createdAt;
     private ClienteJSON client;
-    private List<ItemDoPedido> itens;
+    private List<ItemDoPedidoJSON> itens;
 
     public int getId() {
         return id;
@@ -39,11 +41,11 @@ public class PedidoJSON {
         this.client = client;
     }
 
-    public List<ItemDoPedido> getItens() {
+    public List<ItemDoPedidoJSON> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemDoPedido> itens) {
+    public void setItens(List<ItemDoPedidoJSON> itens) {
         this.itens = itens;
     }
 
@@ -57,21 +59,22 @@ public class PedidoJSON {
 
     public static Pedido map(PedidoJSON json) {
         Pedido response = new Pedido();
-        Cliente c = new Cliente();
-
-        c.setId(json.getClient().getId());
-        c.setNome(json.getClient().getName());
-        c.setSobrenome(json.getClient().getSurname());
-        c.setCpf(json.getClient().getCpf());
 
         response.setId(json.getId());
         response.setData(json.getCreatedAt());
-        if (json.getItens() == null) {
-            json.setItens(new ArrayList<ItemDoPedido>());
-        }
-        response.setItens(json.getItens());
 
+        ClienteJSON clienteJson = json.getClient();
+        Cliente c = ClienteJSON.map(clienteJson);
         response.setCliente(c);
+
+        if (json.getItens() == null) {
+            response.setItens(new ArrayList<ItemDoPedido>());
+        } else {
+            List<ItemDoPedidoJSON> itensJson = json.getItens();
+            List<ItemDoPedido> itens = ItemDoPedidoJSON.map(itensJson);
+            response.setItens(itens);
+        }
+
         return response;
     }
 }

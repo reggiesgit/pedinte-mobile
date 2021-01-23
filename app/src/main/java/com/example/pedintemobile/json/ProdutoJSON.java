@@ -1,5 +1,6 @@
 package com.example.pedintemobile.json;
 
+import com.example.pedintemobile.model.Pedido;
 import com.example.pedintemobile.model.Produto;
 import com.google.gson.annotations.SerializedName;
 
@@ -28,6 +29,15 @@ public class ProdutoJSON {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public static Produto map(ProdutoJSON json) {
+        Produto p = new Produto();
+
+        p.setId(json.getId());
+        p.setDescricao(json.getDescricao());
+
+        return p;
     }
 
 }

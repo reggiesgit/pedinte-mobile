@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.pedintemobile.R;
-import com.example.pedintemobile.facade.ClienteFacade;
 import com.example.pedintemobile.facade.PedidoFacade;
-import com.example.pedintemobile.json.ClienteJSON;
 import com.example.pedintemobile.json.PedidoJSON;
 import com.example.pedintemobile.model.Cliente;
+import com.example.pedintemobile.model.ItemDoPedido;
 import com.example.pedintemobile.model.Pedido;
-import com.example.pedintemobile.service.ClienteCallback;
 import com.example.pedintemobile.service.PedidoCallback;
-import com.example.pedintemobile.utils.ClienteAdapter;
 import com.example.pedintemobile.utils.ItemClickListener;
 import com.example.pedintemobile.utils.PedidoAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,11 +28,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import javax.net.ssl.SSLContext;
 
 public class MainActivity extends AppCompatActivity implements ItemClickListener {
     private static String TAG = "Activity Pedido";
@@ -127,17 +121,19 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     @Override
     public void onClick(int position) {
         Pedido selected = new Pedido();
-        Cliente c = new Cliente();
-        c.setNome(recyclerContent.get(position).getCliente().getNome());
-        c.setSobrenome(recyclerContent.get(position).getCliente().getSobrenome());
 
         selected.setId(recyclerContent.get(position).getId());
+
+        Cliente c = recyclerContent.get(position).getCliente();
         selected.setCliente(c);
 
-        Toast.makeText(this, "Clicou no: " + c.getNome(), Toast.LENGTH_SHORT).show();
+        List<ItemDoPedido> itens = recyclerContent.get(position).getItens();
+        selected.setItens(itens);
 
-//        Intent it = new Intent(this, PedidoDetailactivity.class);
-//        it.putExtra("Pedido", selected);
-//        startActivity(it);
+    //    Toast.makeText(this, "Clicou no: " + c.getNome(), Toast.LENGTH_SHORT).show();
+
+        Intent it = new Intent(this, PedidoDetailActivity.class);
+        it.putExtra("Pedido", selected);
+        startActivity(it);
     }
 }
