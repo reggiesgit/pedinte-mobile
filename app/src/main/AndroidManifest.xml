@@ -16,6 +16,10 @@
             android:label="@string/title_activity_produto"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".activity.ProdutoDetailActivity"
+            android:label="@string/title_activity_produto_detail" />
+
+        <activity
             android:name=".activity.ClienteDetailActivity"
             android:label="@string/title_activity_cliente_detail" />
         <activity
