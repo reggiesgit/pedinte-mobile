@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pedintemobile">
+    package="com.example.pedintemobile" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,8 +11,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.PedidoDetailActivity"></activity>
+        android:theme="@style/AppTheme" >
+        <activity android:name=".activity.NovoPedidoActivity" >
+        </activity>
+        <activity android:name=".activity.PedidoDetailActivity" />
         <activity
             android:name=".activity.ProdutoActivity"
             android:label="@string/title_activity_produto"
@@ -18,7 +22,6 @@
         <activity
             android:name=".activity.ProdutoDetailActivity"
             android:label="@string/title_activity_produto_detail" />
-
         <activity
             android:name=".activity.ClienteDetailActivity"
             android:label="@string/title_activity_cliente_detail" />
@@ -29,7 +32,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +40,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -32,7 +32,6 @@ public class PedidoDetailActivity extends AppCompatActivity {
     private TextView textID;
     private TextView textNomeCliente;
     private TextView textCpfCliente;
-    private Button btnSalvar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,6 @@ public class PedidoDetailActivity extends AppCompatActivity {
         textID = findViewById(R.id.textIdPedido);
         textNomeCliente = findViewById(R.id.textNomeCliente);
         textCpfCliente = findViewById(R.id.textCpfCliente);
-        btnSalvar = findViewById(R.id.btnSalvarPedido);
 
         recyclerViewItens = findViewById(R.id.recyclerViewItens);
 
@@ -57,8 +55,6 @@ public class PedidoDetailActivity extends AppCompatActivity {
             textNomeCliente.setText(nomeCompleto);
             textCpfCliente.setText(c.getCpf());
 
-            btnSalvar.setVisibility(View.INVISIBLE);
-
             adapter = new ItemDoPedidoAdapter(this.pedido.getItens());
 
             recyclerViewItens.setAdapter(adapter);
@@ -68,8 +64,6 @@ public class PedidoDetailActivity extends AppCompatActivity {
             textID.setText("");
             textNomeCliente.setText("");
             textCpfCliente.setText("");
-
-            btnSalvar.setVisibility(View.VISIBLE);
         }
     }
 }

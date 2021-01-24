@@ -77,4 +77,14 @@ public class PedidoJSON {
 
         return response;
     }
+
+    public static PedidoJSON map(Pedido pedido) {
+        PedidoJSON response = new PedidoJSON();
+        if (pedido != null) {
+            response.setClient(ClienteJSON.map(pedido.getCliente()));
+//            response.setCreatedAt(pedido.getData());
+            response.setItens(ItemDoPedidoJSON.mapItens(pedido.getItens()));
+        }
+        return response;
+    }
 }

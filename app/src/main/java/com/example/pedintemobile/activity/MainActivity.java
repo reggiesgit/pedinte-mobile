@@ -48,8 +48,9 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+            startActivityForResult(new Intent(MainActivity.this, NovoPedidoActivity.class), 2);
             }
         });
         recyclerContent = obterPedidos();
@@ -135,5 +136,12 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         Intent it = new Intent(this, PedidoDetailActivity.class);
         it.putExtra("Pedido", selected);
         startActivity(it);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        adapter.notifyDataSetChanged();
     }
 }

@@ -28,6 +28,14 @@ public class ItemDoPedidoJSON {
         this.product = product;
     }
 
+    public static List<ItemDoPedidoJSON> mapItens(List<ItemDoPedido> itens) {
+        List<ItemDoPedidoJSON> response = new ArrayList<>();
+        for (ItemDoPedido item : itens) {
+            response.add(map(item));
+        }
+        return response;
+    }
+
     public static List<ItemDoPedido> map(List<ItemDoPedidoJSON> json) {
         List<ItemDoPedido> response = new ArrayList<>();
         for (ItemDoPedidoJSON each : json) {
@@ -36,14 +44,14 @@ public class ItemDoPedidoJSON {
         return response;
     }
 
-//    public static ItemDoPedidoJSON map(ItemDoPedido item) {
-//        ItemDoPedidoJSON response = new ItemDoPedidoJSON();
-//        if (item != null) {
-//            response.setProduct(item.getProduct());
-//            response.setQuantity(item.getQuantity());
-//        }
-//        return response;
-//    }
+    public static ItemDoPedidoJSON map(ItemDoPedido item) {
+        ItemDoPedidoJSON response = new ItemDoPedidoJSON();
+        if (item != null) {
+            response.setProduct(ProdutoJSON.map(item.getProduct()));
+            response.setQuantity(item.getQuantity());
+        }
+        return response;
+    }
 
     public static ItemDoPedido map(ItemDoPedidoJSON json) {
         Log.i("ITEM_DO_PEDIDO_JSON", "Mapeando ItemDoPedidoJSON -> ItemDoPedido.");
