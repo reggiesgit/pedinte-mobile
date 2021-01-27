@@ -20,6 +20,7 @@ import com.example.pedintemobile.facade.ClienteFacade;
 import com.example.pedintemobile.facade.PedidoFacade;
 import com.example.pedintemobile.facade.ProdutoFacade;
 import com.example.pedintemobile.json.ClienteJSON;
+import com.example.pedintemobile.json.ItemDoPedidoJSON;
 import com.example.pedintemobile.json.PedidoJSON;
 import com.example.pedintemobile.json.ProdutoJSON;
 import com.example.pedintemobile.model.Cliente;
@@ -31,6 +32,7 @@ import com.example.pedintemobile.service.PedidoCallback;
 import com.example.pedintemobile.service.ProdutoCallback;
 import com.example.pedintemobile.utils.ItemDoPedidoAdapter;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,6 +49,7 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
     private Produto produtoSelecionado;
     private int quantidadeSelecionada = 1;
     private List<ItemDoPedido> itens;
+    private PedidoJSON pedidoJson;
 
     // elementos
     private Spinner spinnerProdutos;
@@ -69,6 +72,9 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
         spinnerProdutos = findViewById(R.id.spinnerProdutos);
         obterProdutos();
         obterClientes();
+
+        pedidoJson = new PedidoJSON();
+        pedidoJson.setItens(new ArrayList<ItemDoPedidoJSON>());
 
         btnMais = findViewById(R.id.btnMais);
         btnMenos = findViewById(R.id.btnMenos);
@@ -115,9 +121,21 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
                 ItemDoPedido item = new ItemDoPedido();
+                ItemDoPedidoJSON itemJson = new ItemDoPedidoJSON();
+                ProdutoJSON produtoJson = new ProdutoJSON();
+
                 item.setProduct(produtoSelecionado);
                 item.setQuantity(quantidadeSelecionada);
                 itens.add(item);
+
+                produtoJson.setId(produtoSelecionado.getId());
+                itemJson.setQuantity(quantidadeSelecionada);
+                itemJson.setProduct(produtoJson);
+                pedidoJson.getItens().add(itemJson);
+
+                quantidadeSelecionada = 1;
+                textQuantidadeItem.setText(String.valueOf(quantidadeSelecionada));
+
                 adapter.notifyDataSetChanged();
             }
         });
@@ -154,13 +172,10 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
         produtoSelecionado = produtos.get(position);
-//        Log.i(TAG, "PRODUTO SELECIONADO: " + produtoSelecionado.getDescricao());
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // TODO Auto-generated method stub
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 
     private void obterProdutos() {
         ProdutoFacade.findAll(new ProdutoCallback() {
@@ -219,12 +234,22 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
     }
 
     private void salvarPedido() {
+        if (clienteSelecionado == null) {
+            Toast.makeText(NovoPedidoActivity.this, "É necessário selecionar o cliente antes.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Pedido pedido = new Pedido();
-        pedido.setCliente(clienteSelecionado);
+        Cliente cliente = new Cliente();
+
+        cliente.setId(clienteSelecionado.getId());
+
+        pedido.setCliente(cliente);
         pedido.setItens(itens);
-        pedido.setData(new Date());
+//        pedido.setData(new Date());
 
         PedidoJSON pedidoJson = PedidoJSON.map(pedido);
+        Log.w(TAG, "REQ BODY: " + new GsonBuilder().setPrettyPrinting().create().toJson(pedidoJson));
         PedidoFacade.salvarPedido(pedidoJson, new PedidoCallback() {
             @Override
             public Pedido onSuccess(PedidoJSON pedido) {

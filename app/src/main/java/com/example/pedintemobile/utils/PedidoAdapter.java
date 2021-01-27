@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pedintemobile.R;
+import com.example.pedintemobile.model.ItemDoPedido;
 import com.example.pedintemobile.model.Pedido;
 
 import java.util.ArrayList;
@@ -61,7 +62,14 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
     public void onBindViewHolder(@NonNull PedidoAdapter.PedidoViewHolder holder, int position) {
         holder.nome.setText(pedidoData.get(position).getCliente().getNome());
         holder.sobrenome.setText(pedidoData.get(position).getCliente().getSobrenome());
-        holder.quantidade.setText(String.valueOf(pedidoData.get(position).getItens().size()));
+
+        List<ItemDoPedido> itens = pedidoData.get(position).getItens();
+        int quantidade = 0;
+        for (ItemDoPedido i : itens) {
+            quantidade += i.getQuantity();
+        }
+
+        holder.quantidade.setText(String.valueOf(quantidade));
     }
 
     @Override

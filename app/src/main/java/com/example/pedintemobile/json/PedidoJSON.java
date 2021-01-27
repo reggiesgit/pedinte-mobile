@@ -82,7 +82,7 @@ public class PedidoJSON {
         PedidoJSON response = new PedidoJSON();
         if (pedido != null) {
             response.setClient(ClienteJSON.map(pedido.getCliente()));
-//            response.setCreatedAt(pedido.getData());
+            response.setCreatedAt(pedido.getData());
             response.setItens(ItemDoPedidoJSON.mapItens(pedido.getItens()));
         }
         return response;

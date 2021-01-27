@@ -63,15 +63,7 @@ public class PedidoFacade implements PedidoService {
                     Log.i(TAG, "onResponse: request satisfeito.");
                     callback.onSuccess(response.body());
                 } else {
-//                    try {
-//                        String e = response.errorBody().string();
-//                        Log.e(TAG, "failure " + e);
-//                    } catch (Exception e) {
-//                        e.getStackTrace();
-//                    }
-
-                    Log.w(TAG, new GsonBuilder().setPrettyPrinting().create().toJson(response));
-//                    callback.onFailure(new Exception(response.errorBody().toString()));
+                    callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
 
