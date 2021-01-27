@@ -252,13 +252,16 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
         Log.w(TAG, "REQ BODY: " + new GsonBuilder().setPrettyPrinting().create().toJson(pedidoJson));
         PedidoFacade.salvarPedido(pedidoJson, new PedidoCallback() {
             @Override
-            public Pedido onSuccess(PedidoJSON pedido) {
-                String text = "Pedido nº " + pedido.getId() + " salvo com sucesso.";
+            public void onSuccess() {
+                String text = "Pedido salvo com sucesso.";
                 Toast.makeText(NovoPedidoActivity.this, text, Toast.LENGTH_SHORT).show();
 
                 finish();
+            }
 
-                return PedidoJSON.map(pedido);
+            @Override
+            public Pedido onSuccess(PedidoJSON pedido) {
+                return null;
             }
 
             @Override

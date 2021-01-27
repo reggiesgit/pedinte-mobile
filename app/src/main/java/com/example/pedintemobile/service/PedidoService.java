@@ -1,6 +1,5 @@
 package com.example.pedintemobile.service;
 
-import com.example.pedintemobile.json.ClienteJSON;
 import com.example.pedintemobile.json.PedidoJSON;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import retrofit2.http.Path;
 
 public interface PedidoService {
 
-
     @GET("orders/")
     Call<List<PedidoJSON>> findAll();
 
@@ -23,7 +21,7 @@ public interface PedidoService {
     Call<PedidoJSON> findById();
 
     @POST("orders/")
-    Call<PedidoJSON> salvarPedido(@Body PedidoJSON json);
+    Call<Void> salvarPedido(@Body PedidoJSON json);
 
     @PUT("orders/")
     Call<PedidoJSON> atualizarPedido(@Body PedidoJSON json);

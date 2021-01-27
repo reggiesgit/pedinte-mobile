@@ -33,14 +33,6 @@ public class PedidoActivity extends AppCompatActivity implements ItemClickListen
         Toolbar toolbar = findViewById(R.id.toolbar_pedido);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(PedidoActivity.this, PedidoDetailActivity.class));
-//            }
-//        });
-
         recyclerContent = obterPedidos();
     }
 
@@ -48,6 +40,9 @@ public class PedidoActivity extends AppCompatActivity implements ItemClickListen
         Log.i(TAG, "obterPedidos: Iniciando requisição por todos os pedidos.");
 
         PedidoFacade.findAll(new PedidoCallback() {
+            @Override
+            public void onSuccess() {}
+
             @Override
             public Pedido onSuccess(PedidoJSON pedido) {
                 return null;

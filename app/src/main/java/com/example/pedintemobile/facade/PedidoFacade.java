@@ -2,13 +2,9 @@ package com.example.pedintemobile.facade;
 
 import android.util.Log;
 
-import com.example.pedintemobile.json.ClienteJSON;
 import com.example.pedintemobile.json.PedidoJSON;
-import com.example.pedintemobile.service.ClienteCallback;
-import com.example.pedintemobile.service.ClienteService;
 import com.example.pedintemobile.service.PedidoCallback;
 import com.example.pedintemobile.service.PedidoService;
-import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -54,21 +50,21 @@ public class PedidoFacade implements PedidoService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         PedidoService service = retrofit.create(PedidoService.class);
-        Call<PedidoJSON> call = service.salvarPedido(json);
+        Call<Void> call = service.salvarPedido(json);
         Log.i(TAG, "salvarPedido: Enfileirando request.");
-        call.enqueue(new Callback<PedidoJSON>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<PedidoJSON> call, Response<PedidoJSON> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: request satisfeito.");
-                    callback.onSuccess(response.body());
+                    callback.onSuccess();
                 } else {
                     callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
 
             @Override
-            public void onFailure(Call<PedidoJSON> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Log.e(TAG, "onfailure", t);
                 callback.onFailure(t);
             }
@@ -86,7 +82,7 @@ public class PedidoFacade implements PedidoService {
     }
 
     @Override
-    public Call<PedidoJSON> salvarPedido(PedidoJSON json) {
+    public Call<Void> salvarPedido(PedidoJSON json) {
         return null;
     }
 

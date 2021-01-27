@@ -13,7 +13,6 @@ import com.example.pedintemobile.service.PedidoCallback;
 import com.example.pedintemobile.utils.ItemClickListener;
 import com.example.pedintemobile.utils.PedidoAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,7 +25,6 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -48,9 +46,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            startActivityForResult(new Intent(MainActivity.this, NovoPedidoActivity.class), 2);
+                startActivityForResult(new Intent(MainActivity.this, NovoPedidoActivity.class), 2);
             }
         });
         recyclerContent = obterPedidos();
@@ -60,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         Log.i(TAG, "obterPedidos: Iniciando requisição por todos os pedidos.");
 
         PedidoFacade.findAll(new PedidoCallback() {
+            @Override
+            public void onSuccess() {}
+
             @Override
             public Pedido onSuccess(PedidoJSON pedido) {
                 return null;
@@ -131,8 +130,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         List<ItemDoPedido> itens = recyclerContent.get(position).getItens();
         selected.setItens(itens);
 
-    //    Toast.makeText(this, "Clicou no: " + c.getNome(), Toast.LENGTH_SHORT).show();
-
         Intent it = new Intent(this, PedidoDetailActivity.class);
         it.putExtra("Pedido", selected);
         startActivity(it);
@@ -142,6 +139,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        adapter.notifyDataSetChanged();
+        recyclerContent = obterPedidos();
     }
 }
