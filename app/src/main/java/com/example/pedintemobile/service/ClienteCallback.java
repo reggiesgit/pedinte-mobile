@@ -6,7 +6,7 @@ import com.example.pedintemobile.model.Cliente;
 import java.util.List;
 
 public interface ClienteCallback {
-    public Cliente onSuccess(ClienteJSON cliente);
+    public void onSuccess();
     public List<Cliente> onSuccess(List<ClienteJSON> result);
     public void onFailure(Throwable t);
 }

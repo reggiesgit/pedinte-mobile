@@ -52,20 +52,21 @@ public class ClienteFacade implements ClienteService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ClienteService service = retrofit.create(ClienteService.class);
-        Call<ClienteJSON> call = service.salvarCliente(json);
+        Call<Void> call = service.salvarCliente(json);
         Log.i(TAG, "salvarCliente: Enfileirando request.");
-        call.enqueue(new Callback<ClienteJSON>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ClienteJSON> call, Response<ClienteJSON> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: request satisfeito.");
-                    callback.onSuccess(response.body());
+                    callback.onSuccess();
                 } else {
                     callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
+
             @Override
-            public void onFailure(Call<ClienteJSON> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
@@ -77,20 +78,21 @@ public class ClienteFacade implements ClienteService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ClienteService service = retrofit.create(ClienteService.class);
-        Call<ClienteJSON> call = service.atualizarCliente(json);
+        Call<Void> call = service.atualizarCliente(json);
         Log.i(TAG, "removerCliente: Enfileirando request.");
-        call.enqueue(new Callback<ClienteJSON>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ClienteJSON> call, Response<ClienteJSON> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: request satisfeito.");
-                    callback.onSuccess(response.body());
+                    callback.onSuccess();
                 } else {
                     callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
+
             @Override
-            public void onFailure(Call<ClienteJSON> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
@@ -102,20 +104,21 @@ public class ClienteFacade implements ClienteService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ClienteService service = retrofit.create(ClienteService.class);
-        Call<ClienteJSON> call = service.removerCliente(toRemove);
+        Call<Void> call = service.removerCliente(toRemove);
         Log.i(TAG, "removerCliente: Enfileirando request.");
-        call.enqueue(new Callback<ClienteJSON>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ClienteJSON> call, Response<ClienteJSON> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: request satisfeito.");
-                    callback.onSuccess(response.body());
+                    callback.onSuccess();
                 } else {
                     callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
+
             @Override
-            public void onFailure(Call<ClienteJSON> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
@@ -132,17 +135,17 @@ public class ClienteFacade implements ClienteService {
     }
 
     @Override
-    public Call<ClienteJSON> salvarCliente(ClienteJSON json) {
+    public Call<Void> salvarCliente(ClienteJSON json) {
         return null;
     }
 
     @Override
-    public Call<ClienteJSON> atualizarCliente(ClienteJSON json) {
+    public Call<Void> atualizarCliente(ClienteJSON json) {
         return null;
     }
 
     @Override
-    public Call<ClienteJSON> removerCliente(int id) {
+    public Call<Void> removerCliente(int id) {
         return null;
     }
 }

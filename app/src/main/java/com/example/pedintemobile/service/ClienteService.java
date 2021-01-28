@@ -21,11 +21,11 @@ public interface ClienteService {
     Call<ClienteJSON> findById();
 
     @POST("clients/")
-    Call<ClienteJSON> salvarCliente(@Body ClienteJSON json);
+    Call<Void> salvarCliente(@Body ClienteJSON json);
 
     @PUT("clients/")
-    Call<ClienteJSON> atualizarCliente(@Body ClienteJSON json);
+    Call<Void> atualizarCliente(@Body ClienteJSON json);
 
     @DELETE("clients/{id}")
-    Call<ClienteJSON> removerCliente(@Path("id") int id);
+    Call<Void> removerCliente(@Path("id") int id);
 }

@@ -213,9 +213,7 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
     private void obterClientes() {
         ClienteFacade.findAll(new ClienteCallback() {
             @Override
-            public Cliente onSuccess(ClienteJSON cliente) {
-                return null;
-            }
+            public void onSuccess() {}
 
             @Override
             public List<Cliente> onSuccess(List<ClienteJSON> result) {

@@ -44,7 +44,7 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ClienteActivity.this, ClienteDetailActivity.class));
+                startActivityForResult(new Intent(ClienteActivity.this, ClienteDetailActivity.class), 2);
             }
        });
 
@@ -57,9 +57,7 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
 
         ClienteFacade.findAll(new ClienteCallback() {
             @Override
-            public Cliente onSuccess(ClienteJSON cliente) {
-                return null;
-            }
+            public void onSuccess() {}
 
             @Override
             public List<Cliente> onSuccess(List<ClienteJSON> result) {
@@ -101,6 +99,13 @@ public class ClienteActivity extends AppCompatActivity implements ItemClickListe
 
         Intent it = new Intent(this, ClienteDetailActivity.class);
         it.putExtra("Cliente", selected);
-        startActivity(it);
+        startActivityForResult(it, 2);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        recyclerContent = obterClientes();
     }
 }
