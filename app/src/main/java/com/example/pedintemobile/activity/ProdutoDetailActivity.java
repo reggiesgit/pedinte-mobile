@@ -28,6 +28,7 @@ public class ProdutoDetailActivity extends Activity {
     private TextView textID;
     private EditText editDescricao;
     private ImageButton buttonRemover;
+    private TextView textIdLabel;
     private ProdutoFacade facade;
 
     @Override
@@ -37,6 +38,7 @@ public class ProdutoDetailActivity extends Activity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         textID = (TextView) findViewById(R.id.textID);
+        textIdLabel = (TextView) findViewById(R.id.textView1);
         editDescricao = (EditText) findViewById(R.id.editDescricao);
         buttonRemover = (ImageButton) findViewById(R.id.buttonRemover);
 
@@ -44,10 +46,12 @@ public class ProdutoDetailActivity extends Activity {
         if (produto != null) {
             textID.setText(String.valueOf(produto.getId()));
             editDescricao.setText(produto.getDescricao());
+            textIdLabel.setText("ID:");
         } else {
             textID.setText("");
             editDescricao.setText("");
             buttonRemover.setVisibility(View.INVISIBLE);
+            textIdLabel.setText("");
         }
     }
 
@@ -59,10 +63,9 @@ public class ProdutoDetailActivity extends Activity {
             Log.i(TAG, "salvarProduto: Invocando Facade para salvar.");
             facade.salvarProduto(ProdutoJSON.map(p), new ProdutoCallback() {
                 @Override
-                public Produto onSuccess(ProdutoJSON produto) {
-                    Log.i(TAG, "onSuccess: Cliente salvo com sucesso!");
+                public void onSuccess() {
+                    Log.i(TAG, "onSuccess: Produto salvo com sucesso!");
                     voltarParaLista();
-                    return null;
                 }
 
                 @Override
@@ -80,10 +83,9 @@ public class ProdutoDetailActivity extends Activity {
             p.setId(Integer.valueOf(textID.getText().toString()));
             facade.atualizarProduto(ProdutoJSON.map(p), new ProdutoCallback() {
                 @Override
-                public Produto onSuccess(ProdutoJSON produto) {
+                public void onSuccess() {
                     Log.i(TAG, "onSuccess: Produto salvo com sucesso!");
                     voltarParaLista();
-                    return null;
                 }
 
                 @Override
@@ -102,10 +104,9 @@ public class ProdutoDetailActivity extends Activity {
         int toRemove = Integer.valueOf(textID.getText().toString());
         facade.removerProduto(toRemove, new ProdutoCallback() {
             @Override
-            public Produto onSuccess(ProdutoJSON produto) {
+            public void onSuccess() {
                 Log.i(TAG, "onSuccess: Produto removido com sucesso!");
                 voltarParaLista();
-                return null;
             }
 
             @Override
@@ -119,7 +120,6 @@ public class ProdutoDetailActivity extends Activity {
     }
 
     public void voltarParaLista() {
-        Intent it = new Intent(this, ProdutoActivity.class);
-        startActivity(it);
+        finish();
     }
 }

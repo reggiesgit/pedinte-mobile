@@ -180,9 +180,7 @@ public class NovoPedidoActivity extends AppCompatActivity implements AdapterView
     private void obterProdutos() {
         ProdutoFacade.findAll(new ProdutoCallback() {
             @Override
-            public Produto onSuccess(ProdutoJSON produto) {
-                return null;
-            }
+            public void onSuccess() {}
 
             @Override
             public List<Produto> onSuccess(List<ProdutoJSON> result) {

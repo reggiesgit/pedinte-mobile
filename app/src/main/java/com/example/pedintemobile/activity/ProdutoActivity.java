@@ -21,6 +21,7 @@ import com.example.pedintemobile.utils.ItemClickListener;
 import com.example.pedintemobile.utils.ProdutoAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoActivity extends AppCompatActivity implements ItemClickListener {
@@ -42,7 +43,7 @@ public class ProdutoActivity extends AppCompatActivity implements ItemClickListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ProdutoActivity.this, ProdutoDetailActivity.class));
+                startActivityForResult(new Intent(ProdutoActivity.this, ProdutoDetailActivity.class), 2);
             }
         });
 
@@ -55,9 +56,7 @@ public class ProdutoActivity extends AppCompatActivity implements ItemClickListe
 
         ProdutoFacade.findAll(new ProdutoCallback() {
             @Override
-            public Produto onSuccess(ProdutoJSON produto) {
-                return null;
-            }
+            public void onSuccess() {}
 
             @Override
             public List<Produto> onSuccess(List<ProdutoJSON> result) {
@@ -96,6 +95,13 @@ public class ProdutoActivity extends AppCompatActivity implements ItemClickListe
 
         Intent it = new Intent(this, ProdutoDetailActivity.class);
         it.putExtra("Produto", selected);
-        startActivity(it);
+        startActivityForResult(it, 2);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        recyclerContent = obterProdutos();
     }
 }

@@ -52,20 +52,21 @@ public class ProdutoFacade implements ProdutoService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ProdutoService service = retrofit.create(ProdutoService.class);
-        Call<ProdutoJSON> call = service.salvarProduto(json);
+        Call<Void> call = service.salvarProduto(json);
         Log.i(TAG, "salvarProduto: Enfileirando request.");
-        call.enqueue(new Callback<ProdutoJSON>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ProdutoJSON> call, Response<ProdutoJSON> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: request satisfeito.");
-                    callback.onSuccess(response.body());
+                    callback.onSuccess();
                 } else {
                     callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
+
             @Override
-            public void onFailure(Call<ProdutoJSON> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
@@ -77,19 +78,20 @@ public class ProdutoFacade implements ProdutoService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ProdutoService service = retrofit.create(ProdutoService.class);
-        Call<ProdutoJSON> call = service.atualizarProduto(json);
-        call.enqueue(new Callback<ProdutoJSON>() {
+        Call<Void> call = service.atualizarProduto(json);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ProdutoJSON> call, Response<ProdutoJSON> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: request satisfeito.");
-                    callback.onSuccess(response.body());
+                    callback.onSuccess();
                 } else {
                     callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
+
             @Override
-            public void onFailure(Call<ProdutoJSON> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
@@ -101,20 +103,21 @@ public class ProdutoFacade implements ProdutoService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ProdutoService service = retrofit.create(ProdutoService.class);
-        Call<ProdutoJSON> call = service.removerProduto(toRemove);
+        Call<Void> call = service.removerProduto(toRemove);
         Log.i(TAG, "removerProduto: Enfileirando request.");
-        call.enqueue(new Callback<ProdutoJSON>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ProdutoJSON> call, Response<ProdutoJSON> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: request satisfeito.");
-                    callback.onSuccess(response.body());
+                    callback.onSuccess();
                 } else {
                     callback.onFailure(new Exception(response.errorBody().toString()));
                 }
             }
+
             @Override
-            public void onFailure(Call<ProdutoJSON> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
@@ -126,12 +129,15 @@ public class ProdutoFacade implements ProdutoService {
     @Override
     public Call<ProdutoJSON> findById() { return null; }
 
-    @Override
-    public Call<ProdutoJSON> salvarProduto(ProdutoJSON json) { return null; }
 
     @Override
-    public Call<ProdutoJSON> atualizarProduto(ProdutoJSON json) { return null; }
+    public Call<Void> salvarProduto(ProdutoJSON json) {
+        return null;
+    }
 
     @Override
-    public Call<ProdutoJSON> removerProduto(int id) { return null; }
+    public Call<Void> atualizarProduto(ProdutoJSON json) { return null; }
+
+    @Override
+    public Call<Void> removerProduto(int id) { return null; }
 }

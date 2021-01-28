@@ -22,12 +22,12 @@ public interface ProdutoService {
     Call<ProdutoJSON> findById();
 
     @POST("products/")
-    Call<ProdutoJSON> salvarProduto(@Body ProdutoJSON json);
+    Call<Void> salvarProduto(@Body ProdutoJSON json);
 
     @PUT("products/")
-    Call<ProdutoJSON> atualizarProduto(@Body ProdutoJSON json);
+    Call<Void> atualizarProduto(@Body ProdutoJSON json);
 
     @DELETE("products/{id}")
-    Call<ProdutoJSON> removerProduto(@Path("id") int id);
+    Call<Void> removerProduto(@Path("id") int id);
 
 }
