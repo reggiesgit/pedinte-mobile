@@ -52,8 +52,10 @@ public class ProdutoJSON {
 
     public static Produto map(ProdutoJSON json) {
         Produto produto = new Produto();
-        produto.setId(json.getId());
-        produto.setDescricao(json.getDescricao());
+        if (json != null) {
+            produto.setId(json.getId());
+            produto.setDescricao(json.getDescricao());
+        }
         return produto;
     }
 
